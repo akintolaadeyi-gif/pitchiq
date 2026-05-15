@@ -1,6 +1,6 @@
 import { NextRequest } from 'next/server'
 import Anthropic from '@anthropic-ai/sdk'
-import { aiLimiter } from '@/lib/ratelimit'
+import { rateLimit } from '@/lib/rateLimit'
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
 const FD_KEY = process.env.FOOTBALL_DATA_KEY!
@@ -83,7 +83,8 @@ async function fetchLaLiga() {
 
 export async function POST(request: NextRequest) {
   const ip = request.headers.get('x-forwarded-for') ?? 'anonymous'
-  const { success } = aiLimiter.check(ip, 10)
+  const limited = rateLimit(request, { max: 10, windowMs: 60 * 1000, key: 'ai' })
+  if (limited) return limited
   if (!success) return Response.json({ error: 'Too many requests.' }, { status: 429 })
 
   let body: any

@@ -1,5 +1,5 @@
 import { NextRequest } from 'next/server'
-import { sportsLimiter } from '@/lib/ratelimit'
+import { rateLimit } from '@/lib/rateLimit'
 
 const KEY = process.env.API_FOOTBALL_KEY!
 
@@ -18,7 +18,8 @@ const ALLOWED_PATHS = [
 export async function GET(request: NextRequest) {
   // Rate limit: 30 requests per minute per IP
   const ip = request.headers.get('x-forwarded-for') ?? request.headers.get('x-real-ip') ?? 'anonymous'
-  const { success } = sportsLimiter.check(ip, 30)
+  const limited = rateLimit(request, { max: 30, windowMs: 60 * 1000, key: 'sports' })
+  if (limited) return limited
   if (!success) {
     return Response.json({ error: 'Too many requests.' }, { status: 429 })
   }
