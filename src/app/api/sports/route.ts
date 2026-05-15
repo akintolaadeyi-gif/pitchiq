@@ -20,9 +20,6 @@ export async function GET(request: NextRequest) {
   const ip = request.headers.get('x-forwarded-for') ?? request.headers.get('x-real-ip') ?? 'anonymous'
   const limited = rateLimit(request, { max: 30, windowMs: 60 * 1000, key: 'sports' })
   if (limited) return limited
-  if (!success) {
-    return Response.json({ error: 'Too many requests.' }, { status: 429 })
-  }
 
   const { searchParams } = new URL(request.url)
   const path = searchParams.get('path') ?? ''
