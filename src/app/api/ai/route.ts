@@ -85,7 +85,6 @@ export async function POST(request: NextRequest) {
   const ip = request.headers.get('x-forwarded-for') ?? 'anonymous'
   const limited = rateLimit(request, { max: 10, windowMs: 60 * 1000, key: 'ai' })
   if (limited) return limited
-  if (!success) return Response.json({ error: 'Too many requests.' }, { status: 429 })
 
   let body: any
   try { body = await request.json() } catch { return Response.json({ error: 'Invalid request.' }, { status: 400 }) }
