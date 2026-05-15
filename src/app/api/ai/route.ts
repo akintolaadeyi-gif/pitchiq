@@ -136,6 +136,6 @@ Instructions:
     })),
   })
 
-  const text = response.content.find((b: any) => b.type === 'text')?.text ?? ''
+  const text = (response.content.find((b: any) => b.type === 'text') as any)?.text ?? ''
   return Response.json({ reply: text })
 }
