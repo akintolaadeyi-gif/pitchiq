@@ -15,7 +15,7 @@ function getIP(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   const ip = getIP(req)
-  const limited = rateLimit(req, { max: 3, windowMs: 60 * 60 * 1000, key: 'signup' })
+  const limited = rateLimit(req, { max: 100, windowMs: 60 * 60 * 1000, key: 'signup' })
   if (limited) {
     logSecurityEvent({ event: 'SIGNUP_SPAM', ip, path: '/api/auth/signup', detail: 'Signup rate limit hit' })
     return limited
