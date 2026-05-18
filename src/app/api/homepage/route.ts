@@ -62,6 +62,6 @@ export async function GET() {
 
   return NextResponse.json(
     { leagues },
-    { headers: { 'Cache-Control': 'public, s-maxage=180, stale-while-revalidate=360' } }
+    { headers: { 'Cache-Control': 'no-store' } }
   )
 }
