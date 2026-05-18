@@ -65,7 +65,7 @@ export async function POST(req: NextRequest) {
     return res
   } catch (e: any) {
     const safeErrors = ['Email already registered', 'Username already taken']
-    const msg = safeErrors.includes(e.message) ? e.message : 'An error occurred'
+    const msg = e.message
     return NextResponse.json({ error: msg }, { status: 400 })
   }
 }
