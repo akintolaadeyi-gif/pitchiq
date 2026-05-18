@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-const KEY = process.env.API_FOOTBALL_KEY!
+const KEY = process.env.API_FOOTBALL_KEY ?? "b1427b20abde710fd4c70235617f44af"
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url)
