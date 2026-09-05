@@ -1,38 +1,39 @@
-# PitchIQ
+# Canann Impact Initiative — Website
 
-An AI-powered sports insights dashboard built with Next.js, TypeScript, Supabase, and Anthropic's Claude SDK.
+The official website for Canann Impact Initiative, a Nigerian nonprofit delivering food assistance, educational support, healthcare services, and emergency relief to vulnerable communities across Nigeria.
 
-**Live demo:** [pitchiq-ten.vercel.app](https://pitchiq-ten.vercel.app)
+**Live site:** [canann-ng-85fo.vercel.app](https://canann-ng-85fo.vercel.app)
 
 ## Tech Stack
 
 - **Framework:** Next.js (App Router)
-- **Language:** TypeScript
-- **Backend / Database:** Supabase
-- **AI:** Anthropic's Claude SDK for AI-assisted analysis
-- **Styling:** PostCSS
-- **Linting:** ESLint
-
-## Features
-
-- AI-assisted analysis powered by Claude
-- Supabase-backed data layer for persistence and querying
-- Built on the Next.js App Router with a fully typed TypeScript codebase
-
-## Getting Started
-
-1. Clone the repo: git clone https://github.com/akintolaadeyi-gif/pitchiq.git then cd pitchiq
-2. Install dependencies: npm install
-3. Set up your environment variables — copy .env.example (if present) to .env.local and fill in your own Supabase and Anthropic credentials.
-4. Run the dev server: npm run dev
-5. Open http://localhost:3000 in your browser.
+- **Styling:** Tailwind CSS
+- **Animation:** Framer Motion
+- **Icons:** Lucide React
+- **Typography:** Onest
 
 ## Project Structure
 
-src/ - Application source code
+app/about-us - About page
+app/blog - Blog section
+app/causes - Causes listing
+app/contact - Contact and donation forms
+app/globals.css - Design tokens and base styles
+components/Nav.tsx, Footer.tsx - Shared layout components
+components/home - Homepage-specific components
+lib/ - Utility functions
 public/ - Static assets
-AGENTS.md - Notes on how Claude agents are used in this project
-CLAUDE.md - Claude-specific project context/instructions
+
+## Design System
+
+Primary accent: green #39a46b. Dark background with a clear text hierarchy. Responsive spacing driven by CSS clamp() via the shared .section class.
+
+## Getting Started
+
+1. Clone the repo: git clone https://github.com/akintolaadeyi-gif/canann-ng.git then cd canann-ng
+2. Install dependencies: npm install
+3. Run the dev server: npm run dev
+4. Open http://localhost:3000 in your browser.
 
 ## Deployment
 
